@@ -1,0 +1,44 @@
+
+<form #frm="ngForm">
+        <hr style="width:100%;"><br>
+      <body>
+        <div class="table-container" style="text-align: left;margin-left: 10px;">
+            <style type="text/css">
+              label {
+                width: 100px;
+                display: inline-block;
+            
+              }
+              input[type="text"] {
+                width: 500px;
+                }
+                select {
+                width: 500px;
+                }
+            </style>
+            <h3 class="sub">Update Details</h3>
+            <hr>
+            <div class="from-group" >
+                <label for="id">Task Id:</label >
+                <input  class="form-control" #id="ngModel" name="taskId" cam-variable-type="String" cam-variable-name="name" type="text" [(ngModel)]="tasks.id">
+            </div>&nbsp;
+            <div class="from-group" >
+                <label for="id">Task Name:</label >
+                <input  class="form-control" #id="ngModel" name="taskName" cam-variable-type="String" cam-variable-name="name" type="text" [(ngModel)]="tasks.name">
+            </div>&nbsp;
+            <div class="from-group" >
+                <label for="status">Task Status:</label>
+                    <select name="status" class="form-select" (change)="updateSel(t.value)" id="inputGroupSelect01" #t>
+                        <option value="Variable Is Added">Variable Is Added</option>
+                        <option value="Variable Is Not Added">Variable Is Not Added</option>
+                      </select>
+            </div>&nbsp;
+            <div class="from-group">
+                <button type="button" class="btn btn-info" (click)="updateTask(frm)">Update</button>&nbsp;
+                <button type="button" class="btn btn-info" type="reset">Cancel</button>&nbsp;
+            </div> 
+            </div>
+        </body>
+         
+      </form>
+        <!-- (change)="updateSel(t.value)" -->
