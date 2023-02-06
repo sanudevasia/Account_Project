@@ -1,4 +1,4 @@
-import { Component,Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SharedDataService } from '../shared';
 
@@ -9,7 +9,7 @@ import { SharedDataService } from '../shared';
 })
 export class HeaderComponent {
 
-  @Input() userName: string;
+  userName: string;
 
   subscription: Subscription;
 
