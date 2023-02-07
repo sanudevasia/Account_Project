@@ -29,7 +29,8 @@ export class LoginComponent {
           this.showSucess('Logging Sucessfull');
           this.loginService.fetchProfile(this.username).subscribe((data) => {
             console.log(data);
-            this.sharedDataService.setData(this.username);
+            //console.log(data['firstName']+" "+data['lastName']);
+            this.sharedDataService.setData(data['firstName']+" "+data['lastName']);
           });
           this.loginService.fetchGroups(this.username).subscribe((data) => {
             console.log(data);
