@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { LoginService } from '../loginService';
-import { SharedDataService } from '../shared';
+import { LoginService } from '../login.service';
+import { SharedDataService } from '../shared-data.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   username: string;
@@ -15,26 +16,27 @@ export class LoginComponent {
   constructor(
     private loginService: LoginService,
     private toastr: ToastrService,
-    private sharedDataService: SharedDataService
+    private sharedDataService: SharedDataService,
+    private router:Router
   ) {}
 
   login() {
     this.loginService.login(this.username, this.password).subscribe(
       (data) => {
         const authenticated = data['authenticated'];
-
         if (authenticated != true) {
           this.showError('User Not Found');
         } else {
           this.showSucess('Logging Sucessfull');
           this.loginService.fetchProfile(this.username).subscribe((data) => {
             console.log(data);
-            //console.log(data['firstName']+" "+data['lastName']);
+            // this.sharedDataService.setData(this.username);
             this.sharedDataService.setData(data['firstName']+" "+data['lastName']);
           });
           this.loginService.fetchGroups(this.username).subscribe((data) => {
             console.log(data);
           });
+          this.router.navigate(['/home/workitems']);
         }
         console.log(data);
       },

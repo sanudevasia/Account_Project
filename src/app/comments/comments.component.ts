@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Taskdetails } from '../taskdetails/Taskdetails';
+
 import { comment } from './comment';
 
 @Component({
