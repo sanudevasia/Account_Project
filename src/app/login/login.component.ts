@@ -12,6 +12,7 @@ import { SharedDataService } from '../shared-data.service';
 export class LoginComponent {
   username: string;
   password: string;
+  email: string;
 
   constructor(
     private loginService: LoginService,
@@ -31,12 +32,13 @@ export class LoginComponent {
           this.loginService.fetchProfile(this.username).subscribe((data) => {
             console.log(data);
             // this.sharedDataService.setData(this.username);
+            this.email=data['email'];
             this.sharedDataService.setData(data['firstName']+" "+data['lastName']);
           });
           this.loginService.fetchGroups(this.username).subscribe((data) => {
             console.log(data);
           });
-          this.router.navigate(['/home/workitems']);
+          this.router.navigate(['/home/workitems',this.email]);
         }
         console.log(data);
       },

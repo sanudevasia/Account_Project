@@ -19,7 +19,7 @@ const childRoutes: Routes = [
     { path: 'taskdetails/:taskid', component: TaskdetailsComponent },
     {path:'dialog',component:DialogComponent},
     {path:'listdialog/:taskid',component:ListdialogComponent},
-    {path:'workitems',component:WorkitemsComponent}
+    {path:'workitems/:email',component:WorkitemsComponent}
   ]}
 ];
 
