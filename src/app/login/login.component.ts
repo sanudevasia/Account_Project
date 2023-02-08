@@ -31,16 +31,17 @@ export class LoginComponent {
           this.showSucess('Logging Sucessfull');
           this.loginService.fetchProfile(this.username).subscribe((data) => {
             console.log(data);
-            // this.sharedDataService.setData(this.username);
-            this.email=data['email'];
+            //this.email=;
+            this.sharedDataService.setEmail(data['email']);
             this.sharedDataService.setData(data['firstName']+" "+data['lastName']);
           });
           this.loginService.fetchGroups(this.username).subscribe((data) => {
             console.log(data);
           });
-          this.router.navigate(['/home/workitems',this.email]);
+          this.router.navigate(['/home/workitems']);
         }
         console.log(data);
+        
       },
       ({ error }) => {
         console.log(error);

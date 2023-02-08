@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Task } from '../taskdetails/Task';
+import { Observable, Subscription } from 'rxjs';
+import { SharedDataService } from 'src/app/shared-data.service';
 import { Taskdetails } from '../taskdetails/Taskdetails';
 import { userData } from './userData';
 
@@ -16,22 +15,25 @@ export class WorkitemsComponent {
   email: string;
 
   tasks: Taskdetails;
-  constructor(private http: HttpClient, private route: ActivatedRoute) {
-    this.email = this.route.snapshot.paramMap.get('email');
-  }
+  subscription: Subscription;
+  constructor(
+    private http: HttpClient,
+    private sharedDataService: SharedDataService
+  ) {}
 
   ngOnInit(): void {
-    this.getTasksByAssignee().subscribe((data) => {
-      this.tasks = data;
-      console.log(data);
+    this.subscription = this.sharedDataService.getEmail().subscribe((data) => {
+      this.email = data;
+      this.getTasksByAssignee().subscribe((data) => {
+        this.tasks = data;
+        console.log(data);
+      });
     });
   }
 
   getTasksByAssignee(): Observable<any> {
-    // Get the user email from the object
-    const userEmail = this.email;
     return this.http.get(
-      `http://localhost:8080/engine-rest/task?assignee=${userEmail}`
+      `http://localhost:8080/engine-rest/task?assignee=` + this.email
     );
   }
 }

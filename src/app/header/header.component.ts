@@ -16,7 +16,6 @@ export class HeaderComponent {
   constructor(private sharedDataService: SharedDataService) {
     this.subscription = this.sharedDataService.getData().subscribe((data) => {
       this.userName = data;
-      this.lastName = data;
     });
   }
 }
