@@ -16,8 +16,10 @@ export class AuthInterceptor implements HttpInterceptor {
         console.log("navigation called");
         this.router.navigateByUrl('');
        
+      }else{
+        console.log("navigation not called");
       }
-      console.log("navigation not called");
+      
       return next.handle(req);
   }
 }

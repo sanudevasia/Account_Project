@@ -7,7 +7,7 @@ import { SharedDataService } from '../shared-data.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   username: string;
@@ -18,31 +18,32 @@ export class LoginComponent {
     private loginService: LoginService,
     private toastr: ToastrService,
     private sharedDataService: SharedDataService,
-    private router:Router
+    private router: Router
   ) {}
 
   login() {
     this.loginService.login(this.username, this.password).subscribe(
       (data) => {
+        localStorage.setItem('username', this.username);
         const authenticated = data['authenticated'];
         if (authenticated != true) {
           this.showError('User Not Found');
         } else {
+          this.loginService.fetchGroups(this.username).subscribe((data) => {
+            console.log(data);
+          });
           this.showSucess('Logging Sucessfull');
           this.loginService.fetchProfile(this.username).subscribe((data) => {
             console.log(data);
-            //this.email=;
             this.sharedDataService.setEmail(data['email']);
-            this.sharedDataService.setData(data['firstName']+" "+data['lastName']);
-            localStorage.setItem('username', data['firstName']);
-          });
-          this.loginService.fetchGroups(this.username).subscribe((data) => {
-            console.log(data);
+            this.sharedDataService.setData(
+              data['firstName'] + ' ' + data['lastName']
+            );
+            localStorage.setItem('username', data['id']);
           });
           this.router.navigate(['/home/workitems']);
         }
         console.log(data);
-        
       },
       ({ error }) => {
         console.log(error);
