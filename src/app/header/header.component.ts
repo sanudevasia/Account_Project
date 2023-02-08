@@ -9,7 +9,6 @@ import { SharedDataService } from '../shared-data.service';
 })
 export class HeaderComponent {
   userName: string;
-  lastName: string;
   email:string;
   subscription: Subscription;
 

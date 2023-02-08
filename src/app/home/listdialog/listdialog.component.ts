@@ -40,7 +40,7 @@ closeDialog():void{
 
 
 loadusersbygroupid(){
-this.getUsersById('Mangerlist').subscribe((data)=>{
+this.getUsersById('managers').subscribe((data)=>{
 console.log('load Users By groups');
 console.log(data);
 this.users=data;
