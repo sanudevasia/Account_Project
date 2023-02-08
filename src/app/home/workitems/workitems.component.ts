@@ -13,9 +13,9 @@ import { userData } from './userData';
 export class WorkitemsComponent {
   userdata: userData;
   email: string;
-
   tasks: Taskdetails;
   subscription: Subscription;
+
   constructor(
     private http: HttpClient,
     private sharedDataService: SharedDataService
