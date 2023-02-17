@@ -40,6 +40,7 @@ export class LoginComponent {
               data['firstName'] + ' ' + data['lastName']
             );
             localStorage.setItem('username', data['id']);
+            localStorage.setItem('email',data['email']);
           });
           this.router.navigate(['/home/workitems']);
         }

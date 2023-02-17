@@ -13,6 +13,7 @@ export class AppComponent implements OnInit{
   ngOnInit() {
     window.addEventListener('unload', (event) => {
       localStorage.removeItem('username');
+      localStorage.removeItem('email');
     });
   }
 }
