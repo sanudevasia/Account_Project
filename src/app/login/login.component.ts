@@ -14,6 +14,9 @@ export class LoginComponent {
   password: string;
   email: string;
 
+
+  
+
   constructor(
     private loginService: LoginService,
     private toastr: ToastrService,
